@@ -11,17 +11,14 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: 14
     - name: Install
       run: yarn install --check-files --frozen-lockfile
     - name: Build web-app
-      run: yarn build
-      env:
-        GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
-        SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      run: yarn build  
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
