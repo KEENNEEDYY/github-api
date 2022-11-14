@@ -1,0 +1,35 @@
+.main-nav{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 40px;
+    min-width: none;
+    height: 62px;
+}
+
+.nav-logo-text, .nav-logo-text:hover{
+    color: #FFFF;
+}
+.container-fluid{
+    padding: 0;
+}
+
+.nav-logo-text h1{
+    padding: unset;
+    font-weight: 500px;
+    font-style: normal;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+@media (minwidth: 360px){
+
+}
+
+@media (minwidth: 1430px) {
+    .main-nav{
+        padding-left: 41px;
+        min-height: 62px;
+    }
+    
+}
