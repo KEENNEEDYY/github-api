@@ -1,2 +1,0 @@
-(this["webpackJsonpgithub-api"]=this["webpackJsonpgithub-api"]||[]).push([[0],{11:function(t,e,n){"use strict";n.r(e);var i=n(1),c=n.n(i),r=n(3),o=n.n(r),s=(n(8),n(9),n(0));var u=function(){return Object(s.jsx)("h1",{children:"Hello Github API"})};o.a.render(Object(s.jsx)(c.a.StrictMode,{children:Object(s.jsx)(u,{})}),document.getElementById("root"))},9:function(t,e,n){}},[[11,1,2]]]);
-//# sourceMappingURL=main.183d30fe.chunk.js.map
