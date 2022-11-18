@@ -1,6 +1,7 @@
 export type User = {
-    perfil: String;
-    seguidores: String;
-    localidade: String;
-    nome: String;
+    url: string;
+    followers: string;
+    location: string;
+    name: string;
+    avatar_url: string;
 }

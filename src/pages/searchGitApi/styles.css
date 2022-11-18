@@ -37,12 +37,69 @@
     margin-top: 24px;
 }
 
+.response-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+.response-card-img img{
+    height: 140px;
+    width: 140px;
+    margin-bottom: 15px;
+}
+
+.base-card.response-card { 
+    background-color: #F5F5F5;
+    height: 450px;
+    padding-top: 43px;
+    padding-bottom: 44px;
+    margin-bottom: 100px;
+    margin-top: 20px;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.response-card-datas{
+    margin: 0 0;
+    padding-top: 8px;
+    padding-bottom: 17px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 6px;
+    width: 60vw;
+}
+
+
+.base-card.response-card h5{
+    color: #1890FF;
+}
+
+.base-card.response-card input{
+    color: #737373;
+    margin: 0 0;
+    margin-top: 5px;
+    width: 50vw;
+}
+
 @media (min-width: 400px) {
+    .response-card-datas{
+        width: 55vw;
+    }
     .base-card h4{
         font-size: 28px;
     }    
     .base-card input{
         font-size: 16px;
+    }
+    .base-card.response-card{
+        height: 460px;
+        margin-bottom: 100px;
+    }
+    .base-card.response-card input{
+        width: 45vw;
     }
 }
 
@@ -59,8 +116,60 @@
     .base-card h4{
         font-size: 38px;
     }
+
+    .base-card.response-card{
+        height: 520px;
+        margin-bottom: 100px;
+    }
+
+    .response-card-img img{
+        width: 200px;
+        height: 200px;
+    }
+
+    .base-card.response-card input{
+        width: 48vw;
+    }
 }
 
+@media (min-width: 850px ) {
+
+    .response-card-img img{
+        height: 150px;
+        width: 150px;
+        margin-right: 30px;
+        margin-bottom: unset;
+    }
+
+    .response-card{
+        display: flex;
+        flex-direction: row;
+        align-items: center;    
+    }  
+    
+    .base-card.response-card { 
+        height: 333px;
+        padding-top: 43px;
+        padding-right: 30px;
+        padding-bottom: 44px;
+        padding-left: 38px;
+    }
+    .response-card-datas{
+        width: 40vw;
+    }
+    .base-card.response-card input{
+        width: 35vw;
+    }
+}
+
+@media (min-width: 1128px) {
+
+    .response-card-img img{
+        width: 247px;
+        height: 247px
+    }
+     
+}
 
 @media(min-width: 1440px) {
 

@@ -1,15 +1,16 @@
 import ButtonIcon from './ButtonIcon';
-import { User } from 'types/user';
+import { User as FormData } from 'types/user';
 import './styles.css';
 import { useState } from 'react';
 
 const SearchGitApi = () => {
 
-    const [User, setUser] = useState<User>({
-        nome: 'Kennedy',
-        localidade: 'Localidade Kennedy',
-        perfil: 'Perfil Kennedy',
-        seguidores: 'Seguidores Kennedy'
+    const [FormData, setFormData] = useState<FormData>({
+        name: 'Kennedy',
+        location: 'Localidade Kennedy',
+        url: 'Kennedy',
+        followers: 'Seguidores Kennedy',
+        avatar_url: "https://avatars.githubusercontent.com/u/81121745?v=4"
     });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +19,7 @@ const SearchGitApi = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(User)
+        console.log(FormData)
     }
 
   return (
@@ -34,6 +35,39 @@ const SearchGitApi = () => {
           <p>
             <ButtonIcon />
           </p>
+        </div>
+
+        <div className="base-card response-card">
+          <div className="response-card-img">
+            <img src={FormData.avatar_url} alt="" />
+          </div>
+          <div className="response-card-datas">
+            <h5>Informações:</h5>
+            <input 
+                type="text" 
+                value={"Perfil: "+FormData.url} 
+                onChange={handleChange}
+                readOnly
+              />
+            <input 
+                type="text" 
+                value={"Seguidores: "+FormData.followers}
+                onChange={handleChange}
+                readOnly
+            />
+            <input 
+                type="text" 
+                value={"Localidade: "+FormData.location}
+                onChange={handleChange}
+                readOnly
+            />
+            <input 
+                type="text" 
+                value={"Nome: "+FormData.name}
+                onChange={handleChange}
+                readOnly
+            />
+          </div> 
         </div>
       </form>
     </>
