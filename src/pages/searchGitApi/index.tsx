@@ -2,25 +2,33 @@ import ButtonIcon from './ButtonIcon';
 import { User as FormData } from 'types/user';
 import './styles.css';
 import { useState } from 'react';
+import axios from 'axios';
+import ResultCard from 'components/ResultCard';
 
 const SearchGitApi = () => {
 
-    const [FormData, setFormData] = useState<FormData>({
-        name: 'Kennedy',
-        location: 'Localidade Kennedy',
-        url: 'Kennedy',
-        followers: 'Seguidores Kennedy',
-        avatar_url: "https://avatars.githubusercontent.com/u/81121745?v=4"
-    });
+  const [busca, setBusca] = useState({
+    busca: ''
+  });
+
+    const [FormData, setFormData] = useState<FormData>();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        
+      const name = event.target.name;
+      const value = event.target.value;
+      setBusca({ ...busca, [name]:value})
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(FormData)
-    }
+        console.log(busca)
+        axios.get(`https://api.github.com/users/${busca.busca}`).then((response) => {
+          setFormData(response.data);
+        }).catch((error) => {
+          setFormData(undefined);
+          console.log(error);
+        })
+    };
 
   return (
     <>
@@ -28,7 +36,8 @@ const SearchGitApi = () => {
         <div className="base-card">
           <h4>Encontre um perfil Github</h4>
           <input 
-                type="text" 
+                type="text"
+                name="busca" 
                 placeholder="Usuário Github" 
                 onChange={handleChange}
             />
@@ -37,38 +46,17 @@ const SearchGitApi = () => {
           </p>
         </div>
 
-        <div className="base-card response-card">
-          <div className="response-card-img">
-            <img src={FormData.avatar_url} alt="" />
-          </div>
-          <div className="response-card-datas">
-            <h5>Informações:</h5>
-            <input 
-                type="text" 
-                value={"Perfil: "+FormData.url} 
-                onChange={handleChange}
-                readOnly
-              />
-            <input 
-                type="text" 
-                value={"Seguidores: "+FormData.followers}
-                onChange={handleChange}
-                readOnly
-            />
-            <input 
-                type="text" 
-                value={"Localidade: "+FormData.location}
-                onChange={handleChange}
-                readOnly
-            />
-            <input 
-                type="text" 
-                value={"Nome: "+FormData.name}
-                onChange={handleChange}
-                readOnly
-            />
-          </div> 
-        </div>
+        { FormData &&
+          <>
+            <ResultCard 
+              avatar_url={FormData?.avatar_url} 
+              followers={FormData?.followers} 
+              location={FormData?.location} 
+              name={FormData?.name} 
+              url={FormData?.url}               
+            />      
+          </>
+          }
       </form>
     </>
   );
