@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 const ButtonIcon = () => {
     return(
-        <button className="btn btn-primary btn-icon">
-            <h6>Começar</h6>
-        </button>
+        <Link to="/searchGitApi">
+            <button className="btn btn-primary btn-icon">
+                <h6>Começar</h6>
+            </button>
+        </Link>            
     );
 }
 
