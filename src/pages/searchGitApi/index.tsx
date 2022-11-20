@@ -4,6 +4,7 @@ import './styles.css';
 import { useState } from 'react';
 import axios from 'axios';
 import ResultCard from 'components/ResultCard';
+import ResultCardLoader from './ResultCardLoader';
 
 const SearchGitApi = () => {
 
@@ -12,6 +13,7 @@ const SearchGitApi = () => {
   });
 
     const [FormData, setFormData] = useState<FormData>();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const name = event.target.name;
@@ -21,10 +23,14 @@ const SearchGitApi = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(busca)
+        setIsLoading(true);
         axios.get(`https://api.github.com/users/${busca.busca}`).then((response) => {
           setFormData(response.data);
-        }).catch((error) => {
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
+        .catch((error) => {
           setFormData(undefined);
           console.log(error);
         })
@@ -45,18 +51,16 @@ const SearchGitApi = () => {
             <ButtonIcon />
           </p>
         </div>
-
-        { FormData &&
-          <>
-            <ResultCard 
-              avatar_url={FormData?.avatar_url} 
-              followers={FormData?.followers} 
-              location={FormData?.location} 
-              name={FormData?.name} 
-              url={FormData?.url}               
-            />      
-          </>
-          }
+          { isLoading ? <ResultCardLoader /> :
+            FormData &&
+              <ResultCard 
+                avatar_url={FormData?.avatar_url} 
+                followers={FormData?.followers} 
+                location={FormData?.location} 
+                name={FormData?.name} 
+                url={FormData?.url}               
+              />      
+            }
       </form>
     </>
   );
